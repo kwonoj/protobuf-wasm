@@ -1,0 +1,36 @@
+diff --git a/src/google/protobuf/stubs/common.cc b/src/google/protobuf/stubs/common.cc
+index 73822168..ae05dd74 100755
+--- a/src/google/protobuf/stubs/common.cc
++++ b/src/google/protobuf/stubs/common.cc
+@@ -48,6 +48,7 @@
+ #define snprintf _snprintf    // see comment in strutil.cc
+ #elif defined(HAVE_PTHREAD)
+ #include <pthread.h>
++#elif defined(__EMSCRIPTEN__) // Emscripten doesnt have any threading support yet
+ #else
+ #error "No suitable threading library available."
+ #endif
+@@ -356,6 +357,23 @@ void Mutex::AssertHeld() {
+ #endif
+ }
+ 
++#elif defined(__EMSCRIPTEN__)
++
++struct Mutex::Internal {};
++
++Mutex::Mutex()
++ : mInternal(new Internal) {
++}
++
++Mutex::~Mutex() {}
++
++void Mutex::Lock() {}
++
++void Mutex::Unlock() {}
++
++void Mutex::AssertHeld() {}
++
++
+ #elif defined(HAVE_PTHREAD)
+ 
+ struct Mutex::Internal {
