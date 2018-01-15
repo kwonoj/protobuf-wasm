@@ -1,0 +1,18 @@
+diff --git a/src/google/protobuf/stubs/atomicops.h b/src/google/protobuf/stubs/atomicops.h
+index cb4553b1..be9f27da 100644
+--- a/src/google/protobuf/stubs/atomicops.h
++++ b/src/google/protobuf/stubs/atomicops.h
+@@ -169,8 +169,12 @@ Atomic64 Release_Load(volatile const Atomic64* ptr);
+ #define GOOGLE_PROTOBUF_ATOMICOPS_ERROR \
+ "Atomic operations are not supported on your platform"
+ 
++// Emscripten support
++#if defined(__EMSCRIPTEN__)
++#include <google/protobuf/stubs/atomicops_internals_emscripten.h>
++
+ // ThreadSanitizer, http://clang.llvm.org/docs/ThreadSanitizer.html.
+-#if defined(THREAD_SANITIZER)
++#elif defined(THREAD_SANITIZER)
+ #include <google/protobuf/stubs/atomicops_internals_tsan.h>
+ // MSVC.
+ #elif defined(_MSC_VER)
