@@ -4,4 +4,12 @@ This repo contains small set of patches to protobuf (3.5.1.1) to build protobuf 
 
 `protoc` compiler will not be built but any code generate by the standard protoc is compatible with emscripten.
 
+```
+sh autogen.sh
+emconfigure ./configure
+emmake Make
+```
+
+will generate a dynamic library in src/.libs/ called libprotobuf.$(VERSION).[so|dylib]. Though the suffix suggests that this is a regular dylib, it contains emscripten bytecode. Change the suffix to .bc and you'll be able to link it into your emscripten project.
+
 This patches are based on prior work of https://github.com/invokr/protobuf-emscripten and follows same license.
