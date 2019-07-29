@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index 8d973e39..b768d37b 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -209,7 +209,7 @@ AS_IF([test "$with_protoc" != "no"], [
+ ])
+ AM_CONDITIONAL([USE_EXTERNAL_PROTOC], [test "$with_protoc" != "no"])
+ 
+-AX_PTHREAD
++#AX_PTHREAD
+ AM_CONDITIONAL([HAVE_PTHREAD], [test "x$ax_pthread_ok" = "xyes"])
+ # We still keep this for improving pbconfig.h for unsupported platforms.
+ AC_CXX_STL_HASH

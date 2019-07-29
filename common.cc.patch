@@ -1,12 +1,12 @@
 diff --git a/src/google/protobuf/stubs/common.cc b/src/google/protobuf/stubs/common.cc
-index 6544c6ed..617be09c 100755
+index ff9a32d5..718a92e9 100644
 --- a/src/google/protobuf/stubs/common.cc
 +++ b/src/google/protobuf/stubs/common.cc
-@@ -48,6 +48,7 @@
+@@ -44,6 +44,7 @@
  #define snprintf _snprintf    // see comment in strutil.cc
  #elif defined(HAVE_PTHREAD)
  #include <pthread.h>
-+#elif defined(__EMSCRIPTEN__) // Emscripten doesnt have any threading support yet
++#elif defined(__EMSCRIPTEN__) // Emscripten doesn't have any threading support yet
  #else
  #error "No suitable threading library available."
  #endif
